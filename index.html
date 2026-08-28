@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Congregation Chayeinu, Our Life Inc. - a Chabad shul in Crown Heights, Brooklyn. Daily Shacharis and Mincha, nusach Chabad. Rabbi Shlomo Feldman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Congregation Chayeinu</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap');
+
+/* ---------- tokens: light (bare :root = complete palette) ---------- */
+:root{
+  --bg:#EDEFF0;
+  --surface:#FBFCFC;
+  --surface-2:#E3E6E9;
+  --ink:#151B2E;
+  --ink-soft:#4C5468;
+  --ink-faint:#7A8194;
+  --rule:#CFD4D9;
+  --accent:#96302A;
+  --accent-soft:#B8564C;
+  --shadow:rgba(21,27,46,.10);
+
+  --f-display:"Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+  --f-body:"Assistant", "Helvetica Neue", Arial, sans-serif;
+
+  --measure:66ch;
+  --pad:clamp(1.25rem, 5vw, 4rem);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111521;
+    --surface:#181D2C;
+    --surface-2:#212739;
+    --ink:#E9EBF0;
+    --ink-soft:#A3AAB9;
+    --ink-faint:#78808F;
+    --rule:#2C3446;
+    --accent:#DB8177;
+    --accent-soft:#C4685E;
+    --shadow:rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111521;
+  --surface:#181D2C;
+  --surface-2:#212739;
+  --ink:#E9EBF0;
+  --ink-soft:#A3AAB9;
+  --ink-faint:#78808F;
+  --rule:#2C3446;
+  --accent:#DB8177;
+  --accent-soft:#C4685E;
+  --shadow:rgba(0,0,0,.45);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:clamp(1rem,.97rem + .2vw,1.075rem);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px;}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;
+}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;text-wrap:balance;margin:0;line-height:1.15;}
+
+.wrap{max-width:1080px;margin:0 auto;padding-inline:var(--pad);}
+
+/* ---------- masthead ---------- */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  background:var(--surface);
+}
+.masthead .wrap{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1.75rem;
+  padding-block:1.1rem;
+}
+.brand{
+  font-family:var(--f-display);font-weight:900;font-size:1.2rem;
+  letter-spacing:.005em;color:var(--ink);text-decoration:none;margin-inline-end:auto;
+}
+.brand span{color:var(--accent);}
+.nav{display:flex;flex-wrap:wrap;gap:.35rem 1.4rem;}
+.nav a{
+  color:var(--ink-soft);text-decoration:none;font-size:.85rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.09em;
+}
+.nav a:hover{color:var(--accent);}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(3rem,9vw,6.5rem) clamp(2.5rem,6vw,4rem);}
+.hebrew{
+  font-family:var(--f-display);font-weight:500;
+  font-size:clamp(1.9rem,6.5vw,3.6rem);
+  line-height:1.5;color:var(--accent);
+  margin:0 0 .35rem;
+}
+.hebrew-en{
+  color:var(--ink-faint);font-size:.95rem;font-style:italic;
+  margin:0 0 clamp(1.75rem,4vw,2.75rem);
+}
+h1{font-size:clamp(2.35rem,7vw,4.5rem);font-weight:900;letter-spacing:-.015em;}
+.h1-sub{
+  display:block;font-family:var(--f-body);font-weight:300;
+  font-size:clamp(1rem,2.4vw,1.35rem);letter-spacing:.02em;
+  color:var(--ink-soft);margin-top:.9rem;line-height:1.45;
+}
+.lede{max-width:var(--measure);margin:1.75rem 0 0;font-size:1.1em;color:var(--ink-soft);}
+.cta-row{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.25rem;}
+.btn{
+  display:inline-block;padding:.7rem 1.5rem;border-radius:2px;
+  font-weight:700;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase;
+  text-decoration:none;border:1px solid var(--accent);transition:.15s ease;
+}
+.btn-solid{background:var(--accent);color:#FBFCFC;}
+.btn-solid:hover{background:var(--accent-soft);border-color:var(--accent-soft);}
+.btn-ghost{color:var(--accent);background:transparent;}
+.btn-ghost:hover{background:var(--accent);color:#FBFCFC;}
+
+/* ---------- section frame ---------- */
+section{padding-block:clamp(2.75rem,7vw,5rem);}
+section + section{border-top:1px solid var(--rule);}
+.eyebrow{
+  font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 .85rem;
+}
+h2{font-size:clamp(1.65rem,3.6vw,2.4rem);margin-bottom:1.1rem;}
+h3{font-size:1.15rem;font-weight:700;margin-bottom:.4rem;}
+section p{max-width:var(--measure);color:var(--ink-soft);}
+section p:last-child{margin-bottom:0;}
+
+/* ---------- zmanim board ---------- */
+.board{
+  background:var(--surface);border:1px solid var(--rule);
+  border-top:3px solid var(--accent);
+  box-shadow:0 1px 3px var(--shadow);
+  padding:clamp(1.4rem,3.5vw,2.25rem);
+}
+.board-grid{
+  display:grid;gap:0;margin-top:1.25rem;
+  font-variant-numeric:tabular-nums;
+}
+.board-row{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1rem;
+  padding-block:.95rem;border-bottom:1px solid var(--rule);
+}
+.board-row:first-child{border-top:1px solid var(--rule);}
+.board-name{
+  font-family:var(--f-display);font-size:1.3rem;font-weight:700;
+  color:var(--ink);flex:0 0 auto;min-width:9rem;
+}
+.board-name em{
+  display:block;font-family:var(--f-body);font-style:normal;font-weight:400;
+  font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);
+}
+.board-time{
+  margin-inline-start:auto;font-family:var(--f-display);
+  font-size:clamp(1.5rem,4vw,2rem);font-weight:900;color:var(--accent);
+  letter-spacing:-.01em;
+}
+.board-note{
+  margin-top:1.25rem;padding-top:1.1rem;border-top:1px dashed var(--rule);
+  font-size:.92rem;color:var(--ink-faint);max-width:var(--measure);
+}
+
+/* ---------- generic cards ---------- */
+.cols{display:grid;gap:clamp(1.25rem,3vw,2.25rem);margin-top:1.75rem;}
+@media(min-width:720px){.cols-2{grid-template-columns:repeat(2,1fr);}}
+.card{
+  background:var(--surface);border:1px solid var(--rule);
+  padding:clamp(1.25rem,3vw,1.9rem);border-radius:2px;
+}
+.card p{font-size:.98em;}
+
+/* ---------- rabbi ---------- */
+.rabbi{display:grid;gap:clamp(1.5rem,4vw,3rem);align-items:start;}
+@media(min-width:820px){.rabbi{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);}}
+.credentials{
+  border-inline-start:3px solid var(--accent);padding-inline-start:1.25rem;
+  display:grid;gap:1rem;
+}
+.credentials div{font-size:.95rem;}
+.credentials dt{
+  font-size:.74rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:.15rem;
+}
+.credentials dd{margin:0;color:var(--ink);}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;gap:clamp(1.5rem,4vw,3rem);}
+@media(min-width:820px){.contact-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);}}
+.detail-list{display:grid;gap:1.15rem;margin:0;padding:0;}
+.detail-list dt{
+  font-size:.74rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:.1rem;
+}
+.detail-list dd{margin:0;font-size:1.02rem;}
+form{display:grid;gap:.9rem;}
+label{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:.3rem;}
+input,textarea{
+  width:100%;font:inherit;font-size:.98rem;color:var(--ink);
+  background:var(--surface);border:1px solid var(--rule);border-radius:2px;
+  padding:.65rem .8rem;
+}
+textarea{min-height:8rem;resize:vertical;}
+.form-note{font-size:.85rem;color:var(--ink-faint);margin:.25rem 0 0;}
+
+/* ---------- footer ---------- */
+footer{
+  border-top:1px solid var(--rule);background:var(--surface);
+  padding-block:2.5rem;color:var(--ink-faint);font-size:.85rem;
+}
+footer .wrap{display:grid;gap:1.25rem;}
+@media(min-width:720px){footer .wrap{grid-template-columns:1.4fr 1fr;}}
+footer p{margin:0 0 .4rem;max-width:52ch;}
+footer strong{color:var(--ink-soft);font-weight:600;}
+
+.tag{
+  display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);
+  padding:.2rem .55rem;border-radius:2px;margin-bottom:.9rem;
+}
+
+.jf-wrap{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--accent);padding:clamp(1.25rem,3vw,1.9rem);border-radius:2px;}
+.jf-wrap iframe{display:block;border-radius:2px;}
+
+.hebrew{text-align:left;}
+.contact-grid{align-items:start;}
+.detail-list{align-content:start;}
+.rabbi{align-items:start;}
+.rabbi-side{display:grid;gap:1.4rem;justify-items:start;}
+.portrait{
+  width:100%;max-width:290px;height:auto;display:block;border-radius:2px;
+  border:1px solid var(--rule);box-shadow:0 2px 10px var(--shadow);
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="#top">Congregation Chayeinu<span>.</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#times">Davening</a>
+      <a href="#about">About</a>
+      <a href="#rabbi">Our Rabbi</a>
+      <a href="#learning">Learning</a>
+      <a href="#support">Support</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="wrap hero">
+    <p class="hebrew" dir="rtl" lang="he">כִּי הֵם חַיֵּינוּ וְאֹרֶךְ יָמֵינוּ</p>
+    <p class="hebrew-en">&ldquo;For they are our life and the length of our days.&rdquo;</p>
+    <h1>Congregation Chayeinu
+      <span class="h1-sub">A Chabad house of worship in Crown Heights, Brooklyn</span>
+    </h1>
+    <p class="lede">A small shul davening nusach Chabad, twice a day. We open for the minyan and close when it ends &mdash; but for that half hour, whoever walks in has a place. No membership, no dues at the door, no questions about where you have been.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="#times">Davening times</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <section id="times">
+    <div class="wrap">
+      <p class="eyebrow">Minyanim</p>
+      <h2>When we daven</h2>
+      <p>Two minyanim daily, at the same time every day of the week. Come as you are.</p>
+      <div class="board" style="margin-top:1.75rem;">
+        <div class="board-grid">
+          <div class="board-row">
+            <div class="board-name">Shacharis<em>Morning &mdash; Sunday to Friday</em></div>
+            <div class="board-time">9:30 AM</div>
+          </div>
+          <div class="board-row">
+            <div class="board-name">Mincha<em>Afternoon &mdash; Sunday to Thursday</em></div>
+            <div class="board-time">3:00 PM</div>
+          </div>
+        </div>
+        <p class="board-note">The shul is open to the public at these times only, for the duration of the minyan. We do not currently hold a Maariv minyan or a Shabbos minyan &mdash; both are on the table as the kehilla grows, so if you would come, tell us, because that is how these things start. Yom Tov schedules are announced ahead of each chag.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow">About us</p>
+      <h2>What Chayeinu means</h2>
+      <p>The name comes from the words said each night at the close of Maariv &mdash; <span dir="rtl" lang="he">כי הם חיינו ואורך ימינו</span>, <em>for they are our life and the length of our days</em>. It is a claim about Torah: not an obligation carried alongside a life, but the thing the life is made of.</p>
+      <p>Congregation Chayeinu, Our Life Inc. was founded in Brooklyn in 2026 as a New York religious corporation. Our chartered purposes are simple and we have kept to them: to maintain a house of worship in the traditions of the Jewish faith, to conduct the communal affairs a viable community needs, and to provide for religious education according to the principles of that faith.</p>
+      <div class="cols cols-2">
+        <div class="card">
+          <h3>A place to daven</h3>
+          <p>Nusach Chabad, twice a day, every day. Small enough that you will be noticed if you come and missed if you stop.</p>
+        </div>
+        <div class="card">
+          <h3>A place to learn</h3>
+          <p>Torah study is not an add-on here. Our educational programming is the second half of what the congregation exists to do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rabbi">
+    <div class="wrap">
+      <p class="eyebrow">Leadership</p>
+      <h2>Rabbi Shlomo Feldman</h2>
+      <div class="rabbi">
+        <div>
+          <p>Rabbi Feldman founded Congregation Chayeinu after more than a decade of rabbinic work on three continents. He received semicha from Achei Temimim Chovevei Torah in 2022, served as a rabbi in Sydney, Australia, and continued his rabbinic service at the Aliya Institute before opening the congregation here in Crown Heights.</p>
+          <p>His approach in the shul is the same one that shapes the learning programs: meet a person where he actually is, not where a chart says he ought to be. He is reachable through the congregation for anything concerning the shul or its learning programs.</p>
+        </div>
+        <div class="rabbi-side">
+          <img class="portrait" src="data:image/jpeg;base64,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" alt="Rabbi Shlomo Feldman" width="300" height="303">
+        <dl class="credentials">
+          <div>
+            <dt>Semicha</dt>
+            <dd>Achei Temimim Chovevei Torah, 2022</dd>
+          </div>
+          <div>
+            <dt>Previously</dt>
+            <dd>Rabbi, Sydney, Australia</dd>
+          </div>
+          <div>
+            <dt>Previously</dt>
+            <dd>Aliya Institute</dd>
+          </div>
+          <div>
+            <dt>Since 2026</dt>
+            <dd>Rabbi, Congregation Chayeinu</dd>
+          </div>
+        </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning">
+    <div class="wrap">
+      <p class="eyebrow">Education</p>
+      <h2>Yeshivas Chayeinu</h2>
+      <p class="tag">A program of the congregation</p>
+      <p>Providing for religious education is one of the congregation's chartered purposes, and Yeshivas Chayeinu is how we carry it out. It is a mesivta program for boys ages 14&ndash;17 &mdash; the ones for whom the mainstream yeshiva has stopped working but who do not belong in an intervention program either. There is very little for the boy in between. That is the boy we built this for.</p>
+      <div class="cols cols-2">
+        <div class="card">
+          <h3>What is learned</h3>
+          <p>Chassidus with an eye toward practical application, applied Gemara, Sha'ar HaBitachon, Halacha, Chitas, and a daily Moshiach shiur. Learning skills are taught as skills, not assumed.</p>
+        </div>
+        <div class="card">
+          <h3>Enrollment</h3>
+          <p>Private enrollment, tuition-based. Placement is by conversation with the Rabbi rather than by application form &mdash; we want to understand the boy before anyone commits.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.75rem;"><a href="https://yeshivaschayeinu.com" target="_blank" rel="noopener">Full program details at yeshivaschayeinu.com &rarr;</a></p>
+    </div>
+  </section>
+
+  <section id="support">
+    <div class="wrap">
+      <p class="eyebrow">Support</p>
+      <h2>Help keep the doors open</h2>
+      <p>A daily minyan in a rented room costs money before anyone walks in. Contributions cover the room, the seforim, the siddurim, and the learning programs the congregation runs. Every dollar goes to the shul &mdash; our donation platform takes no cut.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="https://www.zeffy.com/en-US/donation-form/support-congregation-chayeinu" target="_blank" rel="noopener">Donate via Zeffy</a>
+      </div>
+      <p class="form-note" style="margin-top:1.5rem;max-width:66ch;">Congregation Chayeinu, Our Life Inc. is a New York State religious corporation, organized and operated as a synagogue &mdash; a church for federal tax purposes &mdash; under EIN 42-4230930. Contributions are generally tax-deductible to the extent allowed by law. We have not yet requested an IRS determination letter, so the congregation does not currently appear on the IRS list of exempt organizations. Please consult your own advisor.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2>Reach out</h2>
+      <div class="contact-grid">
+        <dl class="detail-list">
+          <div>
+            <dt>Address</dt>
+            <dd>1185 Lincoln Place<br>Brooklyn, NY 11213<br><span style="color:var(--ink-faint);font-size:.88rem;">Open at minyan times only</span></dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href="tel:+14244999595">424-499-9595</a></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:info@congregationchayeinu.org">info@congregationchayeinu.org</a></dd>
+          </div>
+          <div>
+            <dt>Nusach</dt>
+            <dd>Chabad</dd>
+          </div>
+        </dl>
+        <div>
+          <div class="jf-wrap">
+            <iframe src="https://form.jotform.com/262354999269073" style="width:100%;height:720px;border:none;" title="Contact Congregation Chayeinu" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p><strong>Congregation Chayeinu, Our Life Inc.</strong></p>
+      <p>A New York State religious corporation, Kings County. Founded 2026. EIN 42-4230930.</p>
+    </div>
+    <div>
+      <p><strong>1185 Lincoln Place, Brooklyn, NY 11213</strong></p>
+      <p>424-499-9595 &middot; <a href="mailto:info@congregationchayeinu.org">info@congregationchayeinu.org</a></p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
